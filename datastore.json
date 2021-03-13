@@ -1,0 +1,879 @@
+{	
+  "Admin": {	
+    "MinAppVersion": "1.0.0",	
+    "EnableOmniOut": true,	
+    "EnableVFPage": true,	
+    "DevMode": true,	
+    "EnableMetadataCaching": true,	
+    "EnableExternalLibraries": true,	
+    "StaticResource": {	
+      "CardFramework_Assets": "V102",	
+      "CardFramework": "V102",	
+      "HybridCPQ": "v102"	
+    }	
+  },	
+  "App": {	
+    "GlobalExternalLibraries": {	
+      "GlobalCSS": ".vlocity .home-header .search-box {\n display: none;\n}\n\n.nav-bar-tabs-top .title.title-left.header-item div {\n max-width: 230px;\n overflow: hidden;\n white-space: nowrap;\n text-overflow: ellipsis;\n}",	
+      "GlobalJS": "",	
+      "GlobalHTML": ""	
+    },	
+    "GlobalMenu": [	
+      "Home",	
+      "Lead",	
+      "OpportunityWithFilter",	
+      "SALES_Account_Additional_Information__c",	
+      "SALES_Agent__c",	
+      "Report",	
+      "Dashboard",	
+      "CandidateWithFilter",	
+      "SALES_Momentum__c",	
+      "PolicyWithFilter"	
+    ],	
+    "GlobalMenuLayout": "smnyl-mobile-menu-layout",	
+    "GlobalSearch": {	
+      "Account": {	
+        "Fields": "Id, Name, RecordType.Name",	
+        "In": "Name"	
+      },	
+      "Contact": {	
+        "Fields": "Id, Name, Title"	
+      },	
+      "Event": {	
+        "Fields": "Id, Subject, Description"	
+      },	
+      "Lead": {	
+        "Fields": "Id, Name, FirstName, LastName, Status, LeadSource",	
+        "In": "ALL",	
+        "Limit": 100,	
+        "OrderBy": "LastViewedDate DESC",	
+        "Where": "IsConverted = false"	
+      },	
+      "Opportunity": {	
+        "Fields": "Id,CreatedDate,StageName,Name,product_of_interest__c,Account.Name"	
+      },	
+      "SALES_Account_Additional_Information__c": {	
+        "Fields": "Id, SALES_Account__r.Name"	
+      },	
+      "SALES_Agent__c": {	
+        "Fields": "Id, Name, SALES_AgentID__c, SALES_Direction_Commercial__c"	
+      },	
+      "Task": {	
+        "Fields": "Id, Subject, Description"	
+      }	
+    },	
+    "HomeScreenURL": {	
+      "Landscape": "https://smnylcentral--cap--c.cs20.content.force.com/servlet/servlet.ImageServer?id=015m0000001sMoB&oid=00Dm00000003Lb3&lastMod=1560459599000",	
+      "Portrait": "https://smnylcentral--cap--c.cs20.content.force.com/servlet/servlet.ImageServer?id=015m0000001sMoG&oid=00Dm00000003Lb3&lastMod=1560459618000"	
+    },	
+    "Name": "Mobile",	
+    "Orientation": {	
+      "Phone": "Portrait",	
+      "Tablet": "All"	
+    },	
+    "Theme": {	
+      "ActionButtonColor": "#00A1B1",	
+      "NavBarColor": "#006FAB",	
+      "NavBarFontColor": "#FFFFFF",	
+      "NavBarItemColor": "#FFFFFF",	
+      "TabBarColor": "#006FAB",	
+      "TabBarHighlightColor": "#00A1B1"	
+    },	
+    "BottomMenu": []	
+  },	
+  "AppContent": {	
+    "Dashboard": {	
+      "Deeplink": "/one.app/{{id}}",	
+      "Display": {	
+        "Subtitle": [	
+          "Description"	
+        ],	
+        "Title": [	
+          "Title"	
+        ]	
+      },	
+      "Fields": [	
+        "CreatedById",	
+        "CreatedDate",	
+        "Description",	
+        "DeveloperName",	
+        "FolderName",	
+        "Id",	
+        "Title",	
+        "Type"	
+      ],	
+      "From": "Dashboard",	
+      "Label": "Tableros",	
+      "Limit": 100,	
+      "MenuIcon": "standard_dashboard",	
+      "SubView": {	
+        "Dashboard": {	
+          "Label": "Dashboard",	
+          "Type": "Dashboard"	
+        },	
+        "Detail": {	
+          "Label": "Detalle",	
+          "Type": "FormEditing"	
+        },	
+        "Tabs": [	
+          "Dashboard"	
+        ]	
+      },	
+      "Type": "ListView"	
+    },	
+    "Home": {	
+      "ActionGrid": {	
+        "VlocityLayoutName": "action-grid-home"	
+      },	
+      "Label": "Inicio",	
+      "MenuIcon": "standard_home",	
+      "Type": "HomeView",	
+      "VlocityLayout": "<vloc-layout layout-name='mobile-home-list' parent='vm' is-loaded='vm.isLayoutLoaded'></vloc-layout>"	
+    },	
+    "Lead": {	
+      "AutoRefresh": true,	
+      "Display": {	
+        "Image": "PhotoUrl",	
+        "Subtitle": [	
+          "LeadSource",	
+          "Status"	
+        ],	
+        "Title": "Name"	
+      },	
+      "Fields": [	
+        "id",	
+        "Name",	
+        "LastModifiedDate",	
+        "LeadSource",	
+        "PhotoUrl",	
+        "Status"	
+      ],	
+      "From": "Lead",	
+      "Label": "Referido",	
+      "Limit": 100,	
+      "MenuIcon": "standard_lead",	
+      "NavbarTemplate": "",	
+      "NavButton": null,	
+      "OrderBy": "LastModifiedDate",	
+      "SubView": {	
+        "ActionGrid": {	
+          "VlocityLayoutName": "action-grid-lead"	
+        },	
+        "Detail": {	
+          "Label": "Detalle",	
+          "ReloadTabs": "future reload anytab or tabs",	
+          "ReloadVlocityLayout": [	
+            "mobile-lead-highlight"	
+          ],	
+          "Type": "FormEditing"	
+        },	
+        "Stories": {	
+          "Label": "Historial",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='mobile-lead-highlight' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Tabs": [	
+          "Stories",	
+          "Detail"	
+        ]	
+      },	
+      "Type": "ListView",	
+      "Where": "IsConverted = false"	
+    },	
+    "SALES_Candidate__c": {	
+      "AutoRefresh": true,	
+      "Display": {	
+        "Subtitle": [	
+          "SALES_Stage__c"	
+        ],	
+        "Title": "Name"	
+      },	
+      "Fields": [	
+        "Id",	
+        "Name",	
+        "SALES_Stage__c"	
+      ],	
+      "From": "SALES_Candidate__c",	
+      "Label": "Candidatos",	
+      "Limit": 100,	
+      "MenuIcon": "custom_custom15",	
+      "NavbarTemplate": "",	
+      "NavButton": {	
+        "IconName": "ion-plus-round",	
+        "Path": "/apex/vlocity_ins__OmniScriptUniversalPage?id={0}&layout=lightning#/OmniScriptType/OmniScripts/OmniScriptSubType/Create & Edit Candidate/OmniScriptLang/Spanish (Mexico)/ContextId/{0}/PrefillDataRaptorBundle//true/"	
+      },	
+      "OrderBy": "LastModifiedDate DESC",	
+      "SubView": {	
+        "ActionGrid": {	
+          "VlocityLayoutName": "action-grid-candidate"	
+        },	
+        "SupportMaterial": {	
+          "Label": "Material de Soporte",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='SALES_SupportMaterial' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Detail": {	
+          "Label": "Detalle",	
+          "ReloadTabs": "future reload anytab or tabs",	
+          "ReloadVlocityLayout": [	
+            "mobile-candidate-highlight"	
+          ],	
+          "Type": "FormEditing"	
+        },	
+        "Stories": {	
+          "Label": "Historial",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='mobile-candidate-highlight' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Tabs": [	
+          "Stories",	
+          "Detail",	
+          "SupportMaterial"	
+        ]	
+      },	
+      "Type": "ListView"	
+    },	
+    "Opportunity": {	
+      "AutoRefresh": true,	
+      "Display": {	
+        "Image": "PhotoUrl",	
+        "Subtitle": [	
+          "StageName",	
+          "product_of_interest__c",	
+          "{{CreatedDate | date:'mediumDate'}}"	
+        ],	
+        "Title": "Name"	
+      },	
+      "Fields": [	
+        "id",	
+        "Name",	
+        "StageName",	
+        "product_of_interest__c",	
+        "CreatedDate"	
+      ],	
+      "From": "Opportunity",	
+      "Label": "Oportunidad",	
+      "Limit": 100,	
+      "MenuIcon": "standard_opportunity",	
+      "NavbarTemplate": "",	
+      "NavButton": "",	
+      "OrderBy": "LastModifiedDate DESC",	
+      "SubView": {	
+        "ActionGrid": {	
+          "VlocityLayoutName": "action-grid-opportunity"	
+        },	
+        "Detail": {	
+          "Label": "Detalle",	
+          "ReloadTabs": "future reload anytab or tabs",	
+          "ReloadVlocityLayout": [	
+            "mobile-opportunity-highlight"	
+          ],	
+          "Type": "FormEditing"	
+        },	
+        "Quotes": {	
+          "Label": "Propuesta",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='smnyl-mobile-opportunity-quotes' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Stories": {	
+          "Label": "Historial",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='mobile-opportunity-highlight' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Tabs": [	
+          "Stories",	
+          "Quotes",	
+          "Detail",	
+          "Cuesionarios Adicionales"	
+        ],	
+        "Cuesionarios Adicionales": {	
+          "Type": "VlocityLayout",	
+          "MenuIcon": "",	
+          "Label": "Cuesionarios Adicionales",	
+          "NavbarLogoURL": "",	
+          "NavbarLayout": "",	
+          "NavButton": null,	
+          "VlocityLayout": "<vloc-layout layout-name='covidQuestionnaireFigures' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>",	
+          "ActionGrid": {	
+            "VlocityLayoutName": ""	
+          }	
+        }	
+      },	
+      "Type": "ListView",	
+      "Where": "StageName != 'Oportunidad Perdida' AND StageName != 'Oportunidad Ganada'"	
+    },	
+    "Quote": {	
+      "AutoRefresh": true,	
+      "Display": {	
+        "Subtitle": [	
+          "QuoteNumber",	
+          "Quote.Name",	
+          "SubTotal",	
+          "TotalPrice"	
+        ],	
+        "Title": [	
+          "Name"	
+        ]	
+      },	
+      "Fields": [	
+        "id",	
+        "Name",	
+        "Subtotal",	
+        "TotalPrice"	
+      ],	
+      "From": "Quote",	
+      "Label": "Configuración",	
+      "Limit": 100,	
+      "MenuIcon": "standard_quotes",	
+      "NavbarTemplate": "",	
+      "NavButton": "",	
+      "OrderBy": "LastModifiedDate",	
+      "SubView": {	
+        "ActionGrid": {	
+          "VlocityLayoutName": "mobile-action-grid-quote"	
+        },	
+        "Coberturas": {	
+          "Label": "Coberturas",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='np-quote-coverages-plus-attributes-mobile-smnyl' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Detail": {	
+          "Label": "Detalle",	
+          "ReloadVlocityLayout": [	
+            "mobile-quote-highlight"	
+          ],	
+          "Type": "FormEditing"	
+        },	
+        "QuoteLineItem": {	
+          "AutoRefresh": true,	
+          "Display": {	
+            "Image": "vlocity_ins__Image__c",	
+            "Subtitle": [	
+              "LineNumber",	
+              "Quantity",	
+              "UnitPrice",	
+              "TotalPrice"	
+            ],	
+            "Title": [	
+              "Product2.Name"	
+            ]	
+          },	
+          "Fields": [	
+            "id",	
+            "LineNumber",	
+            "Product2.Name",	
+            "Quantity",	
+            "UnitPrice",	
+            "TotalPrice"	
+          ],	
+          "From": "QuoteLineItem",	
+          "Label": "Productos",	
+          "Limit": 25,	
+          "OrderBy": "LineNumber DESC",	
+          "Type": "ListView",	
+          "Where": "QuoteId = '{{id}}'"	
+        },	
+        "Tabs": [	
+          "Detail",	
+          "QuoteLineItem",	
+          "Coberturas"	
+        ]	
+      },	
+      "Type": "ListView",	
+      "Where": ""	
+    },	
+    "Report": {	
+      "Display": {	
+        "Subtitle": [	
+          "Description",	
+          "FolderName"	
+        ],	
+        "Title": [	
+          "Name"	
+        ]	
+      },	
+      "Fields": [	
+        "CreatedById",	
+        "CreatedDate",	
+        "Description",	
+        "DeveloperName",	
+        "FolderName",	
+        "Format",	
+        "Id",	
+        "Name"	
+      ],	
+      "From": "Report",	
+      "Label": "Reportes",	
+      "Limit": 100,	
+      "MenuIcon": "standard_report",	
+      "SubView": {	
+        "Detail": {	
+          "Label": "DETAIL",	
+          "Type": "FormEditing"	
+        },	
+        "ReportChart": {	
+          "Label": "Report",	
+          "Type": "ReportChart"	
+        },	
+        "Tabs": [	
+          "ReportChart"	
+        ]	
+      },	
+      "Type": "ListView",	
+      "OrderBy": "",	
+      "Where": "Format != 'MultiBlock'"	
+    },	
+    "SALES_Account_Additional_Information__c": {	
+      "AutoRefresh": true,	
+      "Display": {	
+        "Subtitle": [	
+          "SALES_Type__c"	
+        ],	
+        "Title": [	
+          "SALES_Account__r.Name"	
+        ]	
+      },	
+      "Fields": [	
+        "id",	
+        "name",	
+        "SALES_CURP__c",	
+        "SALES_Account__r.Name",	
+        "SALES_Type__c"	
+      ],	
+      "From": "SALES_Account_Additional_Information__c",	
+      "Label": "Mis Contactos",	
+      "Limit": 100,	
+      "MenuIcon": "custom_custom15",	
+      "NavbarTemplate": "",	
+      "NavButton": "",	
+      "OrderBy": "SALES_Account__r.Name",	
+      "SubView": {	
+        "ActionGrid": {	
+          "VlocityLayoutName": "action-grid-AdditionalInfo"	
+        },	
+        "Contact Details": {	
+          "Label": "Datos de Contacto",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='smnyl-mobile-addtl-info-contact-details' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Detail": {	
+          "Label": "Detalle",	
+          "ReloadVlocityLayout": [	
+            "mobile-AdditionalInfo-highlight"	
+          ],	
+          "Type": "FormEditing"	
+        },	
+        "Information": {	
+          "Label": "Información Adicional",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='smnyl-client360-AdditionalInfo' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Resumen": {	
+          "Label": "Resumen",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='smnyl-mobile-client360-dashboard' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Stories": {	
+          "Label": "Historial",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='mobile-AdditionalInfo-highlight' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Tabs": [	
+          "Stories",	
+          "Resumen",	
+          "Information",	
+          "Contact Details",	
+          "Detail"	
+        ]	
+      },	
+      "Type": "ListView",	
+      "Where": "CreatedDate != NULL"	
+    },	
+    "SALES_Agent__c": {	
+      "AutoRefresh": true,	
+      "Display": {	
+        "Image": "PhotoUrl",	
+        "Subtitle": [	
+          "SALES_AgentID__c",	
+          "SALES_Direction_Commercial__c"	
+        ],	
+        "Title": "Name"	
+      },	
+      "Fields": [	
+        "id",	
+        "Name",	
+        "SALES_Status__c",	
+        "SALES_AgentID__c",	
+        "SALES_Direction_Commercial__c",	
+        "SALES_Connection_Date__c"	
+      ],	
+      "From": "SALES_Agent__c",	
+      "Label": "Asesores",	
+      "Limit": 100,	
+      "MenuIcon": "custom_custom33",	
+      "NavbarTemplate": "",	
+      "NavButton": "",	
+      "OrderBy": "LastModifiedDate DESC",	
+      "SubView": {	
+        "ActionGrid": {	
+          "VlocityLayoutName": "action-grid-agent"	
+        },	
+        "Detail": {	
+          "Label": "Detalle",	
+          "ReloadVlocityLayout": [	
+            "mobile-agent-highlight"	
+          ],	
+          "Type": "FormEditing"	
+        },	
+        "License": {	
+          "Label": "Licencias y Certificaciones",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='smnyl-mobile-agent-related-info' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Stories": {	
+          "Label": "Historial",	
+          "Type": "VlocityLayout",	
+          "VlocityLayout": "<vloc-layout layout-name='mobile-agent-highlight' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+        },	
+        "Tabs": [	
+          "Stories",	
+          "License",	
+          "Detail"	
+        ]	
+      },	
+      "Type": "ListView",	
+      "Where": ""	
+    },	
+    "CandidateWithFilter": {	
+      "Type": "VlocityLayout",	
+      "MenuIcon": "custom_custom15",	
+      "Label": "Candidatos",	
+      "NavbarLogoURL": "",	
+      "NavbarLayout": "",	
+      "NavButton": null,	
+      "VlocityLayout": "<vloc-layout layout-name='mobile-filter-listview-candidate' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>",	
+      "ActionGrid": {	
+        "VlocityLayoutName": ""	
+      }	
+    },	
+    "SALES_Insured_Person__c": {	
+      "Type": "ListView",	
+      "MenuIcon": "",	
+      "Label": "Insured Person",	
+      "AutoRefresh": true,	
+      "NavButton": null,	
+      "NavbarLogoURL": "",	
+      "NavbarLayout": "",	
+      "Display": {	
+        "Title": [],	
+        "Subtitle": [],	
+        "Subtitle_Separator": "",	
+        "Title_Separator": "",	
+        "Image": ""	
+      },	
+      "From": "",	
+      "Fields": [],	
+      "Where": "",	
+      "SubView": {	
+        "ActionGrid": {	
+          "VlocityLayoutName": ""	
+        },	
+        "Tabs": [	
+          "Detail",	
+          "Beneficiary"	
+        ],	
+        "Beneficiary": {	
+          "Type": "VlocityLayout",	
+          "MenuIcon": "",	
+          "Label": "Beneficiarios",	
+          "NavbarLogoURL": "",	
+          "NavbarLayout": "",	
+          "NavButton": null,	
+          "VlocityLayout": "<vloc-layout layout-name='smnyl-mobile-figures-Beneficiaries' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>",	
+          "ActionGrid": {	
+            "VlocityLayoutName": ""	
+          },	
+          "EnablePullToRefresh": true	
+        },	
+        "Detail": {	
+          "Type": "VlocityLayout",	
+          "MenuIcon": "",	
+          "Label": "Figura",	
+          "NavbarLogoURL": "",	
+          "NavbarLayout": "",	
+          "NavButton": null,	
+          "VlocityLayout": "<vloc-layout layout-name='smnyl-mobile-insured-person-highlight' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>",	
+          "ActionGrid": {	
+            "VlocityLayoutName": ""	
+          }	
+        }	
+      }	
+    },	
+    "vlocity_ins__AssetCoverage__c": {	
+      "Type": "ListView",	
+      "MenuIcon": "",	
+      "Label": "vlocity_ins__AssetCoverage__c",	
+      "AutoRefresh": true,	
+      "NavButton": null,	
+      "NavbarLogoURL": "",	
+      "NavbarLayout": "",	
+      "Display": {	
+        "Title": [],	
+        "Subtitle": [],	
+        "Subtitle_Separator": "",	
+        "Title_Separator": "",	
+        "Image": ""	
+      },	
+      "From": "",	
+      "Fields": [],	
+      "Where": "",	
+      "SubView": {	
+        "ActionGrid": {	
+          "VlocityLayoutName": ""	
+        },	
+        "Tabs": [	
+          "Details"	
+        ],	
+        "Details": {	
+          "Type": "VlocityLayout",	
+          "MenuIcon": "",	
+          "Label": "Detalles",	
+          "NavbarLogoURL": "",	
+          "NavbarLayout": "",	
+          "NavButton": null,	
+          "VlocityLayout": "<vloc-layout layout-name='smnyl-mobile-asset-coverage-details' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>",	
+          "ActionGrid": {	
+            "VlocityLayoutName": ""	
+          }	
+        }	
+      }	
+    },	
+    "SALES_Momentum__c": {	
+      "Type": "ListView",	
+      "MenuIcon": "standard_product",	
+      "Label": "Vencimiento",	
+      "AutoRefresh": true,	
+      "NavButton": null,	
+      "NavbarLogoURL": "",	
+      "NavbarLayout": "",	
+      "Display": {	
+        "Title": [	
+          "Name"	
+        ],	
+        "Subtitle": [	
+          "SALES_Contractor_Name__c"	
+        ],	
+        "Subtitle_Separator": "",	
+        "Title_Separator": "Número de Póliza",	
+        "Image": ""	
+      },	
+      "From": "SALES_Momentum__c",	
+      "Fields": [	
+        "Id",	
+        "Name",	
+        "SALES_Expiration_Date__c",	
+        "SALES_Status_For_Agent__c",	
+        "SALES_Contractor_Name__c"	
+      ],	
+      "Where": "",	
+      "SubView": {	
+        "ActionGrid": {	
+          "VlocityLayoutName": ""	
+        },	
+        "Tabs": [	
+          "Details",	
+          "Poliza y Contratante",	
+          "Asegurados y Beneficiarios",	
+          "Eventos"	
+        ],	
+        "Poliza y Contratante": {	
+          "Type": "VlocityLayout",	
+          "MenuIcon": "",	
+          "Label": "Poliza y Contratante",	
+          "NavbarLogoURL": "",	
+          "NavbarLayout": "",	
+          "NavButton": null,	
+          "VlocityLayout": "<vloc-layout ctrl='MobileController' is-loaded='isHighlightCardLoaded' layout-name='smnyl-mobile-sales-momentum-poliza-contratante-info'></vloc-layout>",	
+          "ActionGrid": {	
+            "VlocityLayoutName": ""	
+          }	
+        },	
+        "Asegurados y Beneficiarios": {	
+          "Type": "VlocityLayout",	
+          "MenuIcon": "",	
+          "Label": "Asegurados y Beneficiarios",	
+          "NavbarLogoURL": "",	
+          "NavbarLayout": "",	
+          "NavButton": null,	
+          "VlocityLayout": "<vloc-layout ctrl='MobileController' is-loaded='isHighlightCardLoaded' layout-name='smnyl-mobile-sales-momentum-asegurado-beneficiario-info'></vloc-layout>",	
+          "ActionGrid": {	
+            "VlocityLayoutName": ""	
+          }	
+        },	
+        "Details": {	
+          "Type": "VlocityLayout",	
+          "MenuIcon": "",	
+          "Label": "Detalles",	
+          "NavbarLogoURL": "",	
+          "NavbarLayout": "",	
+          "NavButton": null,	
+          "VlocityLayout": "<vloc-layout ctrl='MobileController' is-loaded='isHighlightCardLoaded' layout-name='smnyl-mobile-sales-momentum-detail'></vloc-layout>",	
+          "ActionGrid": {	
+            "VlocityLayoutName": ""	
+          }	
+        },	
+        "Eventos": {	
+          "Type": "VlocityLayout",	
+          "MenuIcon": "",	
+          "Label": "Eventos",	
+          "NavbarLogoURL": "",	
+          "NavbarLayout": "",	
+          "NavButton": null,	
+          "VlocityLayout": "<vloc-layout layout-name='smnyl-mobile-sales-momentum-events' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>",	
+          "ActionGrid": {	
+            "VlocityLayoutName": ""	
+          }	
+        }	
+      },	
+      "Limit": 0,	
+      "OrderBy": "Name ASC"	
+    },	
+    "OpportunityWithFilter": {	
+      "ActionGrid": {	
+        "VlocityLayoutName": ""	
+      },	
+      "Label": "Oportunidad",	
+      "MenuIcon": "standard_opportunity",	
+      "NavbarLayout": "",	
+      "NavbarLogoURL": "",	
+      "NavButton": null,	
+      "Type": "VlocityLayout",	
+      "VlocityLayout": "<vloc-layout layout-name='mobile-filter-listview-opportunity' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>"	
+    },	
+    "PolicyDetailWithoutFund": {	
+      "Type": "VlocityLayout",	
+      "MenuIcon": "standard_product",	
+      "Label": "Pólizas",	
+      "VlocityLayout": "",	
+      "Tabs": [	
+        "Detail",	
+        "Asegurado",	
+        "Cobs"	
+      ],	
+      "Detail": {	
+        "Type": "VlocityLayout",	
+        "MenuIcon": "",	
+        "Label": "Detalle",	
+        "NavbarLogoURL": "",	
+        "NavbarLayout": "",	
+        "NavButton": null,	
+        "VlocityLayout": "<vloc-layout layout-name='smnyl-mobile-asset-hightlight' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>",	
+        "ActionGrid": {	
+          "VlocityLayoutName": ""	
+        }	
+      },	
+      "Cobs": {	
+        "Type": "VlocityLayout",	
+        "MenuIcon": "",	
+        "Label": "Coberturas",	
+        "NavbarLogoURL": "",	
+        "NavbarLayout": "",	
+        "NavButton": null,	
+        "VlocityLayout": "<vloc-layout layout-name='mobile-policy-information' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>",	
+        "ActionGrid": {	
+          "VlocityLayoutName": ""	
+        }	
+      },	
+      "Asegurado": {	
+        "Type": "VlocityLayout",	
+        "MenuIcon": "",	
+        "Label": "Figuras",	
+        "NavbarLogoURL": "",	
+        "NavbarLayout": "",	
+        "NavButton": null,	
+        "VlocityLayout": "<vloc-layout layout-name='smnyl-mobile-asset-figure' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>",	
+        "ActionGrid": {	
+          "VlocityLayoutName": ""	
+        }	
+      }	
+    },	
+    "PolicyWithFilter": {	
+      "Type": "ListView",	
+      "MenuIcon": "standard_product",	
+      "Label": "Pólizas ",	
+      "AutoRefresh": true,	
+      "NavButton": null,	
+      "NavbarLogoURL": "",	
+      "NavbarLayout": "",	
+      "Display": {	
+        "Title": [	
+          "SALES_Policy_Id__c"	
+        ],	
+        "Subtitle": [	
+          "SALES_Policy_Id__c",	
+          "SALES_Plan_Type__c"	
+        ],	
+        "Subtitle_Separator": "",	
+        "Title_Separator": "",	
+        "Image": "Id"	
+      },	
+      "From": "Asset",	
+      "Fields": [	
+        "Id",	
+        "Name",	
+        "SALES_Policy_Id__c",	
+        "SALES_Plan_Type__c",	
+        "Status"	
+      ],	
+      "Where": "",	
+      "SubView": {	
+        "ActionGrid": {	
+          "VlocityLayoutName": ""	
+        },	
+        "Tabs": [	
+          "Coberturas",	
+          "Detalle",	
+          "Figura"	
+        ],	
+        "Coberturas": {	
+          "Type": "VlocityLayout",	
+          "MenuIcon": "",	
+          "Label": "Coberturas",	
+          "NavbarLogoURL": "",	
+          "NavbarLayout": "",	
+          "NavButton": null,	
+          "VlocityLayout": "<vloc-layout layout-name='mobile-policy-information' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>",	
+          "ActionGrid": {	
+            "VlocityLayoutName": ""	
+          },	
+          "EnablePullToRefresh": true	
+        },	
+        "Detalle": {	
+          "Type": "VlocityLayout",	
+          "MenuIcon": "",	
+          "Label": "Detalle",	
+          "NavbarLogoURL": "",	
+          "NavbarLayout": "",	
+          "NavButton": null,	
+          "VlocityLayout": "<vloc-layout layout-name='smnyl-mobile-asset-figure' ctrl='MobileController' is-loaded='isHighlightCardLoaded'></vloc-layout>",	
+          "ActionGrid": {	
+            "VlocityLayoutName": ""	
+          }	
+        },	
+        "Figura": {	
+          "Type": "FormEditing",	
+          "MenuIcon": "",	
+          "Label": "Figura",	
+          "ReloadVlocityLayout": [	
+            "smnyl-mobile-asset-figure"	
+          ]	
+        }	
+      },	
+      "Limit": 100,	
+      "OrderBy": ""	
+    }	
+  },	
+  "Localization": {	
+    "EnableLocalization": true	
+  }	
+}
